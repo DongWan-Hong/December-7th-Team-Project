@@ -76,8 +76,8 @@ enum class SCENE_TYPE // 씬 매니저
 
 typedef struct tagInfo
 {
-	float		fX, fY;
-	float		fCX, fCY;	// 가로, 세로 길이
+	float		fX, fY;// 중심축
+	float		fCX, fCY;// 가로, 세로 길이
 
 }INFO;
 

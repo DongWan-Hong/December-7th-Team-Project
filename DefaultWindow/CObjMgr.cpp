@@ -92,7 +92,6 @@ void CObjMgr::Late_Update()
 	CCollisionMgr::Collision_RectEx(m_ObjList[OBJ_PLAYER], m_ObjList[OBJ_WALL]);
 	//CCollisionMgr::Collision_RectEx(m_ObjList[OBJ_MONSTER], m_ObjList[OBJ_PLAYER]);
 
-
 	// 땅 충돌
 	CCollisionMgr::Collision_Jump(m_ObjList[OBJ_PLAYER].front(), m_ObjList[OBJ_BLOCK]);
 	CCollisionMgr::Collision_Box(m_ObjList[OBJ_PLAYER].front(), m_ObjList[OBJ_BLOCK]);
@@ -100,15 +99,7 @@ void CObjMgr::Late_Update()
 
 
 
-
-
-
-	//충돌 후 렉트 수정
-	for (size_t i = 0; i < OBJ_END; ++i)
-	{
-		for (auto& pObj : m_ObjList[i])
-			pObj->Update_Rect();
-	}
+	
 }
 
 void CObjMgr::Render(HDC hDC)

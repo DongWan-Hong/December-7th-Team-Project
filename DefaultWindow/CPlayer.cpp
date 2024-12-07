@@ -21,7 +21,7 @@ CPlayer::~CPlayer()
 
 void CPlayer::Initialize()
 {
-	m_tInfo  = { 100.f, WINCY / 2.f, 100.f, 100.f };//초기위치
+	m_tInfo  = { 100.f, WINCY / 2.f, 42.f, 48.f };//초기위치
 	m_fSpeed = 10.f;//이동속도
 	m_fDistance = 100.f;//이동거리
 	m_fJumpPower = 3.f; //기본 점프 파워
@@ -33,13 +33,13 @@ int CPlayer::Update()
 	CustomJumping(); // 커스텀 점프 로직
 	
 	// 충돌 박스 설정
-	m_CollisionBox = { m_tInfo.fX,m_tInfo.fY + m_tInfo.fCY * 0.5f,10.f };
 	__super::Update_Rect();
-
+	
 	return OBJ_NOEVENT;
 }
 void CPlayer::Late_Update()
 {
+	m_CollisionRect = { m_tRect.left, m_tRect.bottom, m_tRect.right, m_tRect.bottom + 5 }; 
 	Offset();// 화면 스크롤 처리
 }
 
@@ -173,7 +173,7 @@ void CPlayer::CustomJumping()
 	}
 	else
 	{
-		if (!m_bisGround)
+		if (!m_bisGround) // 지면에 떨어져있을때
 		{
 			//공중에 있을 때의 중력적용
 			m_tInfo.fY += 9.8f * m_fTime * m_fTime * 0.5f; // 중력

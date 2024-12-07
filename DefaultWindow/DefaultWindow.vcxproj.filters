@@ -112,6 +112,9 @@
     <Filter Include="01. Obj\07. Wall">
       <UniqueIdentifier>{edf2431b-74cd-429d-a6fe-d0e5d645a6a2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01. Obj\08. Boss">
+      <UniqueIdentifier>{94b23540-b1c4-42bd-8804-4d2c51b00bec}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -222,6 +225,9 @@
     <ClInclude Include="CWall.h">
       <Filter>01. Obj\07. Wall</Filter>
     </ClInclude>
+    <ClInclude Include="CBoss.h">
+      <Filter>01. Obj\08. Boss</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DefaultWindow.cpp">
@@ -316,6 +322,9 @@
     </ClCompile>
     <ClCompile Include="CWall.cpp">
       <Filter>01. Obj\07. Wall</Filter>
+    </ClCompile>
+    <ClCompile Include="CBoss.cpp">
+      <Filter>01. Obj\08. Boss</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

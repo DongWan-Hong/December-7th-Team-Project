@@ -147,56 +147,45 @@ bool CCollisionMgr::Check_Rect(CObj* _Dst, CObj* _Src, float* pX, float* pY)
         *pY = fRadiusY - fY; // y축 밀림 거리 계산
         return true; // 충돌 발생
     }
-
     return false; // 충돌 없음
 }
-
-
-
 //(무결코드) 
 // 박스 충돌 처리
 // - 플레이어와 박스의 충돌 여부를 확인하고, 충돌 시 점프 상태와 위치를 조정?
 void CCollisionMgr::Collision_Box(CObj* _Player, list<CObj*> _Src)
 {
-    RECT rc{}; // 충돌 영역
-	int iColCount(0); // 용도 모르겠음...
-    float Y(0); // y축 위치 조정 값
+	RECT rc{};
+	float Y(0);// y축 위치 조정 값
+	float X(0);
+	for (auto& Src : _Src)
+	{// 네모가 충돌하면 네모가 생기는데 그 네모가 rc에 넣어줌
+		if (IntersectRect(&rc, _Player->Get_Rect(), Src->Get_Rect()))//블럭이랑 충돌시
+		{
+			Y = (rc.top) - _Player->Get_Info().fCY * 0.5; 
+			_Player->Set_Pos(_Player->Get_Info().fX, Y);
+			dynamic_cast<CPlayer*>(_Player)->Set_Ground(true);
+			dynamic_cast<CPlayer*>(_Player)->SetJump(false);		
+			_Player->Update_Rect();
+		}
 
-    for (auto& Src : _Src)
-    {
-        if (IntersectRect(&rc, _Player->Get_Rect(), Src->Get_Rect()))
-        {
-            // 충돌한 객체의 위쪽에 플레이어를 위치시킴
-            Y = (rc.top) - _Player->Get_Info().fCY * 0.5f;
-            _Player->Set_Pos(_Player->Get_Info().fX, Y);
 
-            // 플레이어 상태 갱신? 인거 같음
-            dynamic_cast<CPlayer*>(_Player)->m_bisGround = true;
-            dynamic_cast<CPlayer*>(_Player)->SetJump(false);
-
-            _Player->Update_Rect(); 
-        }
-    }
+	}
 }
-
 //(무결코드)
 // 점프 충돌 처리
 // - 플레이어가 점프 중 Src랑 충돌하여 땅에 있는 상태를 판단
 void CCollisionMgr::Collision_Jump(CObj* _Player, list<CObj*> _Src)
 {
-	CPlayer* _Dst = dynamic_cast<CPlayer*>(_Player); 
-
+	RECT rc{}; 
+	CPlayer* _Dst = dynamic_cast<CPlayer*>(_Player);
+	float Y(0);
 	for (auto& Src : _Src)
 	{
-		float fY = abs(_Dst->GetColBox()->fY - Src->Get_Info().fY); // y축 거리
-		float fRadiusY = (_Dst->GetColBox()->fCY + Src->Get_Info().fCY) * 0.5f; // y축 반지름 합
-
-		if (fRadiusY >= fY && _Dst->GetJump() == false) // 충돌 및 점프 상태가 아닐 경우
+		if (IntersectRect(&rc, _Dst->GetColRect(), Src->Get_Rect()))
 		{
-			_Dst->m_bisGround = true; // 지면에 있음
-			break; 
+			_Dst->Set_Ground(true); //\ 땅에 있을 때 트루
+			break;
 		}
-
-		_Dst->m_bisGround = false; // 땅에서 떨어졌을때
+		_Dst->Set_Ground(false);
 	}
 }
