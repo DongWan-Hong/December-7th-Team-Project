@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "CObjMgr.h"
 #include "CCollisionMgr.h"
+#include "CMonster.h"
 
 CObjMgr* CObjMgr::m_pInstance = nullptr;
 
@@ -79,13 +80,28 @@ void CObjMgr::Late_Update()
 			pObj->Late_Update();
 	}
 
+	// 원충돌 기반 삭제
+	// CCollisionMgr::Collision_Circle(m_ObjList[OBJ_MONSTER], m_ObjList[OBJ_BULLET]);
+	//CCollisionMgr::Collision_Circle(m_ObjList[OBJ_MONSTER], m_ObjList[OBJ_MOUSE]);
+	
 	//CCollisionMgr::Collision_Rect(m_ObjList[OBJ_MONSTER], m_ObjList[OBJ_BULLET]);
-	CCollisionMgr::Collision_Circle(m_ObjList[OBJ_MONSTER], m_ObjList[OBJ_BULLET]);
-	CCollisionMgr::Collision_Circle(m_ObjList[OBJ_MONSTER], m_ObjList[OBJ_MOUSE]);
-	CCollisionMgr::Collision_RectEx(m_ObjList[OBJ_MONSTER], m_ObjList[OBJ_PLAYER]);
+
 
 	//블럭과 플레이어 충돌(플레이어가 밀려나감)
-	CCollisionMgr::Collision_RectEx(m_ObjList[OBJ_PLAYER], m_ObjList[OBJ_BLOCK]);
+	//CCollisionMgr::Collision_RectEx(m_ObjList[OBJ_PLAYER], m_ObjList[OBJ_BLOCK]);
+	CCollisionMgr::Collision_RectEx(m_ObjList[OBJ_PLAYER], m_ObjList[OBJ_WALL]);
+	//CCollisionMgr::Collision_RectEx(m_ObjList[OBJ_MONSTER], m_ObjList[OBJ_PLAYER]);
+
+
+	// 땅 충돌
+	CCollisionMgr::Collision_Jump(m_ObjList[OBJ_PLAYER].front(), m_ObjList[OBJ_BLOCK]);
+	CCollisionMgr::Collision_Box(m_ObjList[OBJ_PLAYER].front(), m_ObjList[OBJ_BLOCK]);
+	
+
+
+
+
+
 
 	//충돌 후 렉트 수정
 	for (size_t i = 0; i < OBJ_END; ++i)

@@ -104,6 +104,7 @@ bool CCollisionMgr::Check_Circle(CObj* _Dst, CObj* _Src)
 //	}
 //}
 // 
+// 
 // - 충돌 발생 시 객체의 위치를 밀어내는 방식으로 처리? ( 무결코드 ) 위 주석 코드랑 비교
 void CCollisionMgr::Collision_RectEx(list<CObj*> _Dst, list<CObj*> _Src)
 {
@@ -180,22 +181,22 @@ void CCollisionMgr::Collision_Box(CObj* _Player, list<CObj*> _Src)
 
 //(무결코드)
 // 점프 충돌 처리
-// - 플레이어가 점프 중 객체와 충돌하여 지면에 있는 상태를 판단
+// - 플레이어가 점프 중 Src랑 충돌하여 땅에 있는 상태를 판단
 void CCollisionMgr::Collision_Jump(CObj* _Player, list<CObj*> _Src)
 {
-	CPlayer* _Dst = dynamic_cast<CPlayer*>(_Player); // 플레이어 객체로 다운캐스팅
+	CPlayer* _Dst = dynamic_cast<CPlayer*>(_Player); 
 
 	for (auto& Src : _Src)
 	{
 		float fY = abs(_Dst->GetColBox()->fY - Src->Get_Info().fY); // y축 거리
 		float fRadiusY = (_Dst->GetColBox()->fCY + Src->Get_Info().fCY) * 0.5f; // y축 반지름 합
 
-		if (fRadiusY >= fY && _Dst->GetJump() == false) // 충돌 발생 및 점프 상태가 아닐 경우
+		if (fRadiusY >= fY && _Dst->GetJump() == false) // 충돌 및 점프 상태가 아닐 경우
 		{
 			_Dst->m_bisGround = true; // 지면에 있음
-			break; // 충돌 확인 후 종료
+			break; 
 		}
 
-		_Dst->m_bisGround = false; // 지면에서 떨어짐
+		_Dst->m_bisGround = false; // 땅에서 떨어졌을때
 	}
 }
