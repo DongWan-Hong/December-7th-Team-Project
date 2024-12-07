@@ -2,6 +2,8 @@
 
 #include "CObj.h"
 
+enum Check_Bullet { Default, Skill_1, Skill_2 };
+
 class CBullet : public CObj
 {
 public:
@@ -15,7 +17,17 @@ public:
 	virtual void Render(HDC hDC) override;
 	virtual void Release()		 override;
 
-	// CObj을(를) 통해 상속됨
+	void Default_Bullet();
+	void Skill_F1_Bullet();
+	void Skill_F2_Bullet();
+
+
+	Check_Bullet Check_Bul;
+
+	CObj* m_Bu_Monster;
+
+	float m_fAngleSpeed;
+	float f_Bullet_Ang;
 	
 };
 

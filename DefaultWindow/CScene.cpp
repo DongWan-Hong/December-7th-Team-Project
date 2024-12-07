@@ -5,6 +5,7 @@
 #include "CLineMgr.h"
 #include "CKeyMgr.h"
 #include "CWall.h"
+#include "CScrollMgr.h"
 
 CScene::CScene()
 {
@@ -18,6 +19,7 @@ CScene::~CScene() //
 void CScene::Initialize()
 {
 	CObjMgr::Get_Instance()->Add_Object(OBJ_PLAYER, CAbstractFactory<CPlayer>::Create());
+
 	CLineMgr::Get_Instance()->Initialize();
 	/*for (int i = 0; i < 6; ++i)
 	{
@@ -33,6 +35,10 @@ void CScene::Initialize()
 void CScene::Update()
 {
 
+	if (CScrollMgr::Get_Instance()->Update())
+		return;
+
+
 	CObjMgr::Get_Instance()->Update();
 
 
@@ -40,6 +46,8 @@ void CScene::Update()
 
 void CScene::LateUpdate()
 {
+	if (0 != CScrollMgr::Get_Instance()->Get_Dir())
+		return;
 
 	CObjMgr::Get_Instance()->Late_Update();
 	CKeyMgr::Get_Instance()->Update();

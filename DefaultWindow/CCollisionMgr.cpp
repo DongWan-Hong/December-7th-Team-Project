@@ -2,6 +2,12 @@
 #include "CCollisionMgr.h"
 #include "CPlayer.h"  
 
+
+
+
+
+
+
 void CCollisionMgr::Collision_Rect(list<CObj*> _Dst, list<CObj*> _Src)
 {
 	RECT rc{};// 충돌한걸 저장할 RECT 구조체
@@ -187,5 +193,23 @@ void CCollisionMgr::Collision_Jump(CObj* _Player, list<CObj*> _Src)
 			break;
 		}
 		_Dst->Set_Ground(false);
+	}
+}
+void CCollisionMgr::Collision_Player_Monster(CObj* _pPlayer, list<CObj*> _Monster)
+{
+	RECT rc({});
+	DIRECTION eDir(DIR_NONE);
+
+	for (auto& pMonster : _Monster)
+	{
+		if (IntersectRect(&rc, _pPlayer->Get_Rect(), pMonster->Get_Rect()))
+		{
+			if (_pPlayer->Get_Info().fX > pMonster->Get_Info().fX)
+				eDir = DIR_LEFT;
+			else
+				eDir = DIR_RIGHT;
+
+			static_cast<CPlayer*>(_pPlayer)->Set_Damaged(eDir);
+		}
 	}
 }

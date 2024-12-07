@@ -29,7 +29,8 @@
 extern HWND		g_hWnd;
 //extern int g_CurrentStage; // 현재 스테이지 어떤 스테이지인지 
 
-enum DIRECTION { DIR_LEFT, DIR_RIGHT, DIR_UP, DIR_DOWN, DIR_LU, DIR_RU, DIR_END };
+enum BULLET_ID{ BUL_NORMAL, BUL_END }; // 총알 타입  // 은성 코드
+enum DIRECTION { DIR_NONE,DIR_LEFT, DIR_RIGHT, DIR_UP, DIR_DOWN, DIR_LU, DIR_RU, DIR_END };
 
 enum DRAWPOINT { HEAD, TAIL, DRAWPOINT_END }; // 채영 코드
 enum DRAWDIR { NO_DIR, HORIZONTAL, VERTICAL, DRAWDIR_END };

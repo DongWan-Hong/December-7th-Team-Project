@@ -26,5 +26,8 @@ public:
 
     // 점프 중 충돌 처리: 플레이어와 객체 간 충돌로 인해 점프 여부 결정? (무결코드)
     static void Collision_Jump(CObj* _Player, list<CObj*> _Src);
+
+    // 플레이어가 몬스터한테 뽀뽀할때
+    static void Collision_Player_Monster(CObj* _pPlayer, list<CObj*> _Monster);
 };
 

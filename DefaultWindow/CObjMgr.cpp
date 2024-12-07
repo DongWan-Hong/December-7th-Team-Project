@@ -80,6 +80,8 @@ void CObjMgr::Late_Update()
 			pObj->Late_Update();
 	}
 
+	if (!m_ObjList[OBJ_PLAYER].empty())
+		CCollisionMgr::Collision_Player_Monster(m_ObjList[OBJ_PLAYER].front(), m_ObjList[OBJ_MONSTER]);
 	// 원충돌 기반 삭제
 	// CCollisionMgr::Collision_Circle(m_ObjList[OBJ_MONSTER], m_ObjList[OBJ_BULLET]);
 	//CCollisionMgr::Collision_Circle(m_ObjList[OBJ_MONSTER], m_ObjList[OBJ_MOUSE]);

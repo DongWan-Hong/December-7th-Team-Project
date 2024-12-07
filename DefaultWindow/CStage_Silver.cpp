@@ -32,6 +32,7 @@ void CStage_Silver::Initialize()
 
 void CStage_Silver::Update()
 {
+	
 	CObjMgr::Get_Instance()->Update();
 
 }

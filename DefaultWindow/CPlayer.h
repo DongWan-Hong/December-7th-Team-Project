@@ -17,8 +17,11 @@ public:
     virtual void Render(HDC hDC) override;
     virtual void Release() override;
 
+    void Create_Bullet(); // 은성 코드
+    void Set_Damaged(const DIRECTION& _eDir); // 은성코드
+
 public:
-    void SetHeight(float _height) { m_pGroundHeight = _height; }//무
+    void SetHeight(float _height) { m_pGroundHeight = _height; }//무결
 
 private:
     void        Key_Input();
@@ -67,5 +70,23 @@ public: // 무결꺼 그대로 하긴 했는데 나중에 프라이빗으로 바꾸고 겟해야할듯
     RECT                m_CollisionRect; // 무결,충돌 사각형 정보
     bool                m_bisGround; //무결,플레이어의 지면 체크용 
     float              m_pGroundHeight;//무결,지면 높이
+
+    ///////////////////////////////////////////////
+
+    int                 m_iScroll_Move;
+
+    bool                m_bDamaged;
+    ULONGLONG           m_ullDamaged_Time;
+
+
+    bool                m_bBlink;
+    ULONGLONG           m_ullBlink;
+
+    int                 m_iBullet_Cooltime;
+    ULONGLONG           m_ullLast_Bullet;
+
+    INT                 m_iHp;
+
+    BULLET_ID           m_eBullet_ID;
 };
 

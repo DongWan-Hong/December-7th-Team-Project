@@ -34,12 +34,6 @@
     <Filter Include="01. Obj\04. Shield">
       <UniqueIdentifier>{5b2963b1-e43d-46e2-b309-87a87b104392}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01. Obj\01. Bullet\ScrewBullet">
-      <UniqueIdentifier>{e96831a9-1ff2-488f-b9f8-0f45774d7173}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="01. Obj\01. Bullet\GuideBullet">
-      <UniqueIdentifier>{d0bc3b22-3ccb-4481-a360-7cd2d912e8b6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="01. Obj\05. Block">
       <UniqueIdentifier>{9518156e-dd56-45a0-9e56-bac028973e0a}</UniqueIdentifier>
     </Filter>
@@ -112,6 +106,15 @@
     <Filter Include="01. Obj\07. Wall">
       <UniqueIdentifier>{edf2431b-74cd-429d-a6fe-d0e5d645a6a2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01. Obj\01. Bullet\01_Player_Bullet">
+      <UniqueIdentifier>{c6d37ab7-8611-41e3-acec-ee5234587767}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Obj\01. Bullet\02_Monster_Bullet">
+      <UniqueIdentifier>{1af127c1-ef6f-4f9c-93c9-64f1d6574752}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Obj\01. Bullet\03_Boss_Bullet">
+      <UniqueIdentifier>{a43fba2e-1e54-4747-97c6-465db23b788a}</UniqueIdentifier>
+    </Filter>
     <Filter Include="01. Obj\08. Boss">
       <UniqueIdentifier>{94b23540-b1c4-42bd-8804-4d2c51b00bec}</UniqueIdentifier>
     </Filter>
@@ -144,9 +147,6 @@
     <ClInclude Include="CPlayer.h">
       <Filter>01. Obj\00. Player</Filter>
     </ClInclude>
-    <ClInclude Include="CBullet.h">
-      <Filter>01. Obj\01. Bullet</Filter>
-    </ClInclude>
     <ClInclude Include="CMonster.h">
       <Filter>01. Obj\02. Monster</Filter>
     </ClInclude>
@@ -162,14 +162,8 @@
     <ClInclude Include="CShield.h">
       <Filter>01. Obj\04. Shield</Filter>
     </ClInclude>
-    <ClInclude Include="CScrewBullet.h">
-      <Filter>01. Obj\01. Bullet\ScrewBullet</Filter>
-    </ClInclude>
     <ClInclude Include="CObjMgr.h">
       <Filter>03. Design\ObjMgr</Filter>
-    </ClInclude>
-    <ClInclude Include="CGuideBullet.h">
-      <Filter>01. Obj\01. Bullet\GuideBullet</Filter>
     </ClInclude>
     <ClInclude Include="CLine.h">
       <Filter>03. Design\LineMgr\Line</Filter>
@@ -228,6 +222,12 @@
     <ClInclude Include="CBoss.h">
       <Filter>01. Obj\08. Boss</Filter>
     </ClInclude>
+    <ClInclude Include="CMonster_Bullet.h">
+      <Filter>01. Obj\01. Bullet\02_Monster_Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="CBullet.h">
+      <Filter>01. Obj\01. Bullet</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DefaultWindow.cpp">
@@ -245,9 +245,6 @@
     <ClCompile Include="CPlayer.cpp">
       <Filter>01. Obj\00. Player</Filter>
     </ClCompile>
-    <ClCompile Include="CBullet.cpp">
-      <Filter>01. Obj\01. Bullet</Filter>
-    </ClCompile>
     <ClCompile Include="CMonster.cpp">
       <Filter>01. Obj\02. Monster</Filter>
     </ClCompile>
@@ -260,14 +257,8 @@
     <ClCompile Include="CShield.cpp">
       <Filter>01. Obj\04. Shield</Filter>
     </ClCompile>
-    <ClCompile Include="CScrewBullet.cpp">
-      <Filter>01. Obj\01. Bullet\ScrewBullet</Filter>
-    </ClCompile>
     <ClCompile Include="CObjMgr.cpp">
       <Filter>03. Design\ObjMgr</Filter>
-    </ClCompile>
-    <ClCompile Include="CGuideBullet.cpp">
-      <Filter>01. Obj\01. Bullet\GuideBullet</Filter>
     </ClCompile>
     <ClCompile Include="CLine.cpp">
       <Filter>03. Design\LineMgr\Line</Filter>
@@ -325,6 +316,12 @@
     </ClCompile>
     <ClCompile Include="CBoss.cpp">
       <Filter>01. Obj\08. Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="CMonster_Bullet.cpp">
+      <Filter>01. Obj\01. Bullet\02_Monster_Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="CBullet.cpp">
+      <Filter>01. Obj\01. Bullet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
