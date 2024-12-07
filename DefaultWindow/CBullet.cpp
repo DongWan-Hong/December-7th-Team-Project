@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "CBullet.h"
+#include "CScrollMgr.h"
 
 CBullet::CBullet()
 {
@@ -16,6 +17,9 @@ void CBullet::Initialize()
 	m_tInfo.fCY = 30.f;
 
 	m_fSpeed = 5.f;
+
+	if (m_eDir == DIR_LEFT)
+		m_fSpeed *= -1;
 }
 
 int CBullet::Update()
@@ -37,11 +41,15 @@ void CBullet::Late_Update()
 
 void CBullet::Render(HDC hDC)
 {
+
+	int		iScrollX = (int)CScrollMgr::Get_Instance()->Get_ScrollX();
+	int		iScrollY = (int)CScrollMgr::Get_Instance()->Get_ScrollY();
+
 	Ellipse(hDC,
-		m_tRect.left,
-		m_tRect.top,
-		m_tRect.right,
-		m_tRect.bottom);
+		m_tRect.left+ iScrollX,
+		m_tRect.top+ iScrollY,
+		m_tRect.right+ iScrollX,
+		m_tRect.bottom+ iScrollY);
 }
 
 void CBullet::Release()
