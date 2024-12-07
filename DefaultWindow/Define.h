@@ -175,3 +175,42 @@ typedef struct tagBox // 영웅코드
 	{}
 
 }BOX;
+
+///
+/// 여기서부터 채영꺼
+///
+typedef struct tagFloatPoint
+{
+	float        fX, fY;
+
+	tagFloatPoint() { ZeroMemory(this, sizeof(tagFloatPoint)); }
+	tagFloatPoint(float _fX, float _fY)
+		: fX(_fX), fY(_fY)
+	{    }
+	tagFloatPoint operator +(tagFloatPoint& rhs)
+	{
+		return (tagFloatPoint(fX + rhs.fX, fY + rhs.fY));
+	}
+	tagFloatPoint operator +(int i)
+	{
+		return (tagFloatPoint(fX + (float)i, fY + (float)i));
+	}
+
+}FPOINT;
+
+
+typedef struct tagAniInfo
+{
+	FPOINT    tImgLT;
+	FPOINT    tPosLT;
+	FPOINT    tSize;
+	INFO    tTargetInfo;
+    int    iDuration;
+	int        iMaxFrame;
+
+	tagAniInfo() { ZeroMemory(this, sizeof(tagAniInfo)); }
+	tagAniInfo(FPOINT _tImgLT, FPOINT _tPosLT, FPOINT _tSize, INFO _tTargetInfo, int _iDuration, int _iMaxFrame)
+	{
+		tImgLT = _tImgLT; tPosLT = _tPosLT; tSize = _tSize; tTargetInfo = _tTargetInfo; _iDuration = _iDuration; iMaxFrame = _iMaxFrame;
+	}
+}ANINFO;

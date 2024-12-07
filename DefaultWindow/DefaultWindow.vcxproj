@@ -138,6 +138,8 @@
     <ClInclude Include="Block.h" />
     <ClInclude Include="BlockMgr.h" />
     <ClInclude Include="CAbstractFactory.h" />
+    <ClInclude Include="CAnimation.h" />
+    <ClInclude Include="CAnimMgr.h" />
     <ClInclude Include="CBmpMgr.h" />
     <ClInclude Include="Boss_FireMan.h" />
     <ClInclude Include="CBullet.h" />
@@ -175,6 +177,8 @@
   <ItemGroup>
     <ClCompile Include="Block.cpp" />
     <ClCompile Include="BlockMgr.cpp" />
+    <ClCompile Include="CAnimation.cpp" />
+    <ClCompile Include="CAnimMgr.cpp" />
     <ClCompile Include="CBmpMgr.cpp" />
     <ClCompile Include="Boss_FireMan.h.cpp" />
     <ClCompile Include="CBullet.cpp" />

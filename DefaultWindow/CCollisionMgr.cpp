@@ -189,8 +189,8 @@ void CCollisionMgr::Collision_Boss_Box(CObj* _Boss, list<CObj*> _Src)
 		{
 			Y = (rc.top) - _Boss->Get_Info().fCY * 0.5;
 			_Boss->Set_Pos(_Boss->Get_Info().fX, Y);
-			dynamic_cast<CBoss_FireMan*>(_Boss)->Set_Ground(true);
-			dynamic_cast<CBoss_FireMan*>(_Boss)->SetJump(false);
+			/*dynamic_cast<CBoss_FireMan*>(_Boss)->Set_Ground(true);
+			dynamic_cast<CBoss_FireMan*>(_Boss)->SetJump(false);*/
 			_Boss->Update_Rect();
 		}
 
