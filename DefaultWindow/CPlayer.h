@@ -42,7 +42,7 @@ public:
     void Set_Ground(bool _bisGround)
     {
 
-        m_bisGround = _bisGround;
+        m_bisGround = _bisGround; // 얘가 플레이어한테만 있어서 보스가 부르눈 순간 오류남
 
     }
     bool Get_Ground()
@@ -82,11 +82,11 @@ public: // 무결꺼 그대로 하긴 했는데 나중에 프라이빗으로 바꾸고 겟해야할듯
     bool                m_bBlink;
     ULONGLONG           m_ullBlink;
 
-    int                 m_iBullet_Cooltime;
-    ULONGLONG           m_ullLast_Bullet;
+    int                 m_iBullet_Cooltime; // 총알 발사 간격
+    ULONGLONG           m_ullLast_Bullet; 
 
-    INT                 m_iHp;
+    INT                 m_iHp; // 플레이어의 Hp
 
-    BULLET_ID           m_eBullet_ID;
+    BULLET_ID           m_eBullet_ID; // 총알의 번호 // 추후 5가지타입의 총알
 };
 

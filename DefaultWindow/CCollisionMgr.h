@@ -24,6 +24,7 @@ public:
     // 플레이어와 다른 객체 간의 박스 충돌 처리? (무결코드)
     static void Collision_Box(CObj* _Player, list<CObj*> _Src);
 
+    static void Collision_Boss_Box(CObj* _Player, list<CObj*> _Src);
     // 점프 중 충돌 처리: 플레이어와 객체 간 충돌로 인해 점프 여부 결정? (무결코드)
     static void Collision_Jump(CObj* _Player, list<CObj*> _Src);
 

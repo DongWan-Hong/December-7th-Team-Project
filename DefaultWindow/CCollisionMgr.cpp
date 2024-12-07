@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "CCollisionMgr.h"
 #include "CPlayer.h"  
-
+#include "Boss_FireMan.h"
 
 
 
@@ -174,6 +174,25 @@ void CCollisionMgr::Collision_Box(CObj* _Player, list<CObj*> _Src)
 			_Player->Update_Rect();
 		}
 
+
+	}
+}
+//보스 오버로딩
+void CCollisionMgr::Collision_Boss_Box(CObj* _Boss, list<CObj*> _Src)
+{
+	RECT rc{};
+	float Y(0);// y축 위치 조정 값
+	float X(0);
+	for (auto& Src : _Src)
+	{// 네모가 충돌하면 네모가 생기는데 그 네모가 rc에 넣어줌
+		if (IntersectRect(&rc, _Boss->Get_Rect(), Src->Get_Rect()))//블럭이랑 충돌시
+		{
+			Y = (rc.top) - _Boss->Get_Info().fCY * 0.5;
+			_Boss->Set_Pos(_Boss->Get_Info().fX, Y);
+			dynamic_cast<CBoss_FireMan*>(_Boss)->Set_Ground(true);
+			dynamic_cast<CBoss_FireMan*>(_Boss)->SetJump(false);
+			_Boss->Update_Rect();
+		}
 
 	}
 }
