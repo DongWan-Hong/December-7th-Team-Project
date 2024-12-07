@@ -8,6 +8,7 @@
 #include "CBmpMgr.h"
 #include "BlockMgr.h"
 #include "CWall.h"
+#include "CScrollMgr.h"
 
 CStage_Silver::CStage_Silver()
 {
@@ -32,6 +33,9 @@ void CStage_Silver::Initialize()
 
 void CStage_Silver::Update()
 {
+	if (CScrollMgr::Get_Instance()->Update())
+		return;
+
 	
 	CObjMgr::Get_Instance()->Update();
 
@@ -39,7 +43,8 @@ void CStage_Silver::Update()
 
 void CStage_Silver::LateUpdate()
 {
-	CObjMgr::Get_Instance()->Late_Update();
+	if (0 != CScrollMgr::Get_Instance()->Get_Dir())
+		return;
 	CKeyMgr::Get_Instance()->Update();
 }
 

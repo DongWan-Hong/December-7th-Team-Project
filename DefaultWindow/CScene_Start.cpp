@@ -42,7 +42,8 @@ void CScene_Start::Update() // 스테이지
 	if (GetAsyncKeyState('1'))
 	{
 		//g_CurrentStage =(int)SCENE_TYPE::STAGE_Hong;
-   		CSceneMgr::Get_Instance()->Set_Scene(SCENE_TYPE::STAGE_Hong); // 동완 스테이지로 전환
+
+		CSceneMgr::Get_Instance()->Set_Scene(SCENE_TYPE::STAGE_Hong); // 동완 스테이지로 전환
 		//CLineMgr::Get_Instance()->Load_Line(L"../Data/Line_Hong.dat");
 		CBlockMgr::Get_Instance()->Load_Block(L"../Data/Block_Hong.dat");
 	}

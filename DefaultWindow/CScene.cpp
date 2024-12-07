@@ -42,6 +42,7 @@ void CScene::Update()
 	CObjMgr::Get_Instance()->Update();
 
 
+
 }
 
 void CScene::LateUpdate()
@@ -59,7 +60,6 @@ void CScene::Render(HDC _hDC)
 	Rectangle(_hDC, 0, 0, WINCX, WINCY);
 
 	CLineMgr::Get_Instance()->Render(_hDC);
-
 	CObjMgr::Get_Instance()->Render(_hDC);
 
 }

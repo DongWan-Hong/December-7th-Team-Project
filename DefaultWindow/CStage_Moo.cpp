@@ -8,6 +8,7 @@
 #include "CBmpMgr.h"
 #include "BlockMgr.h"
 #include "CWall.h"
+#include "CScrollMgr.h"
 
 CStage_Moo::CStage_Moo()
 {
@@ -32,12 +33,16 @@ void CStage_Moo::Initialize()
 
 void CStage_Moo::Update()
 {
+	if (CScrollMgr::Get_Instance()->Update())
+		return;
+
 	CObjMgr::Get_Instance()->Update();
 }
 
 void CStage_Moo::LateUpdate()
 {
-	CObjMgr::Get_Instance()->Late_Update();
+	if (0 != CScrollMgr::Get_Instance()->Get_Dir())
+		return;
 	CKeyMgr::Get_Instance()->Update();
 }
 

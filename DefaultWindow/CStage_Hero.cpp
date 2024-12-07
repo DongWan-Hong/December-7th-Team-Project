@@ -8,6 +8,7 @@
 #include "CBmpMgr.h"
 #include "BlockMgr.h"
 #include "CWall.h"
+#include "CScrollMgr.h"
 
 CStage_Hero::CStage_Hero()
 {
@@ -33,12 +34,17 @@ void CStage_Hero::Initialize()
 
 void CStage_Hero::Update()
 {
+	if (CScrollMgr::Get_Instance()->Update())
+		return;
+
 	// 모든 오브젝트들을 순회하면서 업데이트
 	CObjMgr::Get_Instance()->Update();
 }
 
 void CStage_Hero::LateUpdate()
 {
+	if (0 != CScrollMgr::Get_Instance()->Get_Dir())
+		return;
 	CObjMgr::Get_Instance()->Late_Update();
 	CKeyMgr::Get_Instance()->Update();
 }

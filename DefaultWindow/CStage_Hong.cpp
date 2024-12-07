@@ -8,6 +8,8 @@
 #include "CBmpMgr.h"
 #include "BlockMgr.h"
 #include "CWall.h"
+#include "CScrollMgr.h"
+
 
 CStage_Hong::CStage_Hong()
 {
@@ -29,11 +31,17 @@ void CStage_Hong::Initialize()
 
 void CStage_Hong::Update()
 {
-	CObjMgr::Get_Instance()->Update();
+	if (CScrollMgr::Get_Instance()->Update())
+		return;
+
+	CObjMgr::Get_Instance()->Update(); // ¾ê°¡ 
 }
 
 void CStage_Hong::LateUpdate()
 {
+
+	if (0 != CScrollMgr::Get_Instance()->Get_Dir())
+		return;
 	CObjMgr::Get_Instance()->Late_Update();
 	CKeyMgr::Get_Instance()->Update();
 }
@@ -47,7 +55,6 @@ void CStage_Hong::Release()
 		{
 			delete m_arrObj[i][j];
 		}
-
 	}
 }
 
@@ -73,6 +80,8 @@ void CStage_Hong::Render(HDC _hDC)
 		0,
 		0,
 		SRCCOPY);
+
+
 }
 
 void CStage_Hong::Exit()

@@ -49,19 +49,21 @@ void CBlock::Render(HDC hDC)
         m_tRect.right + iScrollX,
         m_tRect.bottom);*/
 
-	int		iScrollX = (int)CScrollMgr::Get_Instance()->Get_ScrollX();
+    int		iScrollX = (int)CScrollMgr::Get_Instance()->Get_ScrollX();
+    int		iScrollY = (int)CScrollMgr::Get_Instance()->Get_ScrollY();
 
 	HDC		hMemDC = CBmpMgr::Get_Instance()->Find_Image(L"Block");
 
 	 BitBlt(hDC,						// 복사 받을 DC
 	 	m_tRect.left + iScrollX,	// 복사 받을 위치 좌표 X, Y	
-	 	m_tRect.top,
-	 	(int)m_tInfo.fCX,			// 복사 받을 이미지의 가로, 세로
+	 	m_tRect.top + iScrollY,// 복사 받을 위치 좌표 X, Y	
+	 	(int)m_tInfo.fCX,		// 복사 받을 이미지의 가로, 세로
 	 	(int)m_tInfo.fCY,
 	 	hMemDC,						// 복사할 이미지 DC
 	 	0,							// 비트맵 출력 시작 좌표(Left, top)
 	 	0,
 	 	SRCCOPY);					// 출력 효과 설정(그대로 출력)
+
 }
 
 void CBlock::Release()

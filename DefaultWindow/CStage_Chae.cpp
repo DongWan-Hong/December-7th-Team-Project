@@ -8,6 +8,7 @@
 #include "CBmpMgr.h"
 #include "BlockMgr.h"
 #include "CWall.h"
+#include "CScrollMgr.h"
 
 CStage_Chae::CStage_Chae()
 {
@@ -32,11 +33,16 @@ void CStage_Chae::Initialize()
 
 void CStage_Chae::Update()
 {
+	if (CScrollMgr::Get_Instance()->Update())
+		return;
+
 	CObjMgr::Get_Instance()->Update();
 }
 
 void CStage_Chae::LateUpdate()
 {
+	if (0 != CScrollMgr::Get_Instance()->Get_Dir())
+		return;
 	CObjMgr::Get_Instance()->Late_Update();
 	CKeyMgr::Get_Instance()->Update();
 }

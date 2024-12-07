@@ -6,6 +6,7 @@
 #include "CStage_Hero.h"
 #include "CStage_Moo.h"
 #include "CStage_Silver.h"
+#include "CScrollMgr.h"
 
 //SCENE_TYPE g_CurrentStage = SCENE_TYPE::STAGE_START; // 기본값 START
 
@@ -58,11 +59,14 @@ void CSceneMgr::Initialize() // Scene 생성
 
 void CSceneMgr::Update()
 {
+	if (CScrollMgr::Get_Instance()->Update())
+		return;
 	m_pCurScene->Update(); // 현재 스테이지 업데이트
 }
 
 void CSceneMgr::Render(HDC hDC)
 {
+
 	m_pCurScene->Render(hDC); // 현재 스테이지 렌더
 }
 

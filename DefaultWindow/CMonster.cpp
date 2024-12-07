@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "CMonster.h"
+#include "CScrollMgr.h"
 
 CMonster::CMonster()
 {
@@ -57,11 +58,14 @@ void CMonster::Late_Update()
 
 void CMonster::Render(HDC hDC)
 {
+    int		iScrollX = (int)CScrollMgr::Get_Instance()->Get_ScrollX();
+    int		iScrollY = (int)CScrollMgr::Get_Instance()->Get_ScrollY();
+
     Rectangle(hDC,
-        m_tRect.left,
-        m_tRect.top,
-        m_tRect.right,
-        m_tRect.bottom);
+        m_tRect.left + iScrollX,
+        m_tRect.top + iScrollY,
+        m_tRect.right + iScrollX,
+        m_tRect.bottom + iScrollY);
 }
 
 void CMonster::Release()
