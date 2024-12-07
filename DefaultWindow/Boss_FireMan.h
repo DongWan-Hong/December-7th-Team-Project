@@ -18,24 +18,28 @@ private:
 
     void     Key_Input();
 
-    float Get_Hp() { return MAX_Hp - Hp_Count; }
+
+public:
     void Set_HP(float _type) { Hp_Count = _type; }
     void Set_Player(CObj* pPlayer) { m_Boss_pPlayer = pPlayer; } // 플레이어 객체 설정
 
-    void Set_Ground(bool _bisGround)
+    void Set_Boss_Ground(bool _bisGround)
     {
-
-        m_bisGround = _bisGround;
+        m_Boss_Ground = _bisGround;
 
     }
-    bool Get_Ground()
+    bool Get_Boss_Ground()
     {
 
-        return m_bisGround;
+        return m_Boss_Ground;
 
     }
-    void SetJump(bool _isjump) { m_bJump = _isjump; }//동완,점프상태설정
+    void Set_Boss_Jump(bool _isjump) { m_bJump = _isjump; }//동완,점프상태설정
     bool GetJump() { return m_bJump; }//동완, 점프상태반환
+
+
+
+    float Get_Hp() { return MAX_Hp - Hp_Count; }
 
 
     CObj* Create_Bullet(int _type);
@@ -59,9 +63,11 @@ private:
     bool                m_bJump; // 점프체크
     float               m_fJumpPower;//점프속도
     float               m_fTime; // 시간
-    bool                m_bisGround;\
-
-        ////////////////////////
+    bool                m_Boss_Ground;
+    ////////////////////////
+       bool m_bMovingLeft;
+       int m_fJumpCooldown;
+       
 
 
 };

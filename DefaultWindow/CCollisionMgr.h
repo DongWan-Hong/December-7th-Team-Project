@@ -30,5 +30,9 @@ public:
 
     // 플레이어가 몬스터한테 뽀뽀할때
     static void Collision_Player_Monster(CObj* _pPlayer, list<CObj*> _Monster);
+
+
+    bool Collision_RangeChack(CObj* _pPlayer, CObj* _pMonster, float _fRange);
+    //
 };
 

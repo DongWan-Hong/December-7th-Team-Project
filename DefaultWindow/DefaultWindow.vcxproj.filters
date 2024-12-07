@@ -109,17 +109,14 @@
     <Filter Include="01. Obj\01. Bullet\01_Player_Bullet">
       <UniqueIdentifier>{c6d37ab7-8611-41e3-acec-ee5234587767}</UniqueIdentifier>
     </Filter>
-    <Filter Include="01. Obj\01. Bullet\02_Monster_Bullet">
-      <UniqueIdentifier>{1af127c1-ef6f-4f9c-93c9-64f1d6574752}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="01. Obj\01. Bullet\03_Boss_Bullet">
-      <UniqueIdentifier>{a43fba2e-1e54-4747-97c6-465db23b788a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="01. Obj\08. Boss">
       <UniqueIdentifier>{94b23540-b1c4-42bd-8804-4d2c51b00bec}</UniqueIdentifier>
     </Filter>
     <Filter Include="03. Design\AnimationMgr">
       <UniqueIdentifier>{48e336ad-b1be-4d99-86a7-a6faaeceee0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="01. Obj\01. Bullet\NewFilter1">
+      <UniqueIdentifier>{ae092c33-55ce-4ffb-96bc-a0ec87d69fe5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -225,9 +222,6 @@
     <ClInclude Include="Boss_FireMan.h">
       <Filter>01. Obj\08. Boss</Filter>
     </ClInclude>
-    <ClInclude Include="CMonster_Bullet.h">
-      <Filter>01. Obj\01. Bullet\02_Monster_Bullet</Filter>
-    </ClInclude>
     <ClInclude Include="CBullet.h">
       <Filter>01. Obj\01. Bullet</Filter>
     </ClInclude>
@@ -325,9 +319,6 @@
     </ClCompile>
     <ClCompile Include="Boss_FireMan.h.cpp">
       <Filter>01. Obj\08. Boss</Filter>
-    </ClCompile>
-    <ClCompile Include="CMonster_Bullet.cpp">
-      <Filter>01. Obj\01. Bullet\02_Monster_Bullet</Filter>
     </ClCompile>
     <ClCompile Include="CBullet.cpp">
       <Filter>01. Obj\01. Bullet</Filter>

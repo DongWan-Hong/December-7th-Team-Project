@@ -41,7 +41,33 @@ void CBoss_FireMan::Initialize()
 
 int CBoss_FireMan::Update()
 {
+	m_tInfo.fY += m_fSpeed;
+
+	if (m_bMovingLeft)
+	{
+		m_tInfo.fX -= m_fSpeed; // 왼쪽으로 이동
+		if (m_tInfo.fX <= 200) // 왼쪽 경계
+		{
+			m_bMovingLeft = false; // 방향 전환
+		}
+	}
+	else
+	{
+		m_tInfo.fX += m_fSpeed; // 오른쪽으로 이동
+		if (m_tInfo.fX >= 500) // 오른쪽 경계
+		{
+			m_bMovingLeft = true; // 방향 전환
+		}
+	}
 	
+	// 랜덤 점프
+	if (!m_bJump && rand() % 100 < 2) // 2% 확률로 점프 시작
+	{
+		m_bJump = true;
+		m_fJumpPower = 15.f; // 점프 파워 설정
+		m_fTime = 0.f;       // 점프 시간 초기화
+	}
+
 	Update_Rect();
 	return OBJ_NOEVENT;
 }
@@ -146,39 +172,41 @@ CObj* CBoss_FireMan::Create_Bullet(int _type)
 
 void CBoss_FireMan::Jumping()
 {
-	//float	fY(0.f);
+	{
+		float	fY(0.f);
 
-	////라인충돌감지
-	////무결코드는  m_tInfo.fY 추가
-	//bool bLineCol = CLineMgr::Get_Instance()->Collision_Line(m
-	//if (m_bJump)
-	//{
-	//	// 포물선 계산에 따라 y 위치 변경
-	//	m_tInfo.fY -= (m_fJumpPower * sinf(45.f) * m_fTime) - (9.8f * m_fTime * m_fTime) * 0.5f;
-	//	m_fTime += 0.2f;
+		//라인충돌감지
+		//무결코드는  m_tInfo.fY 추가
+		bool bLineCol = CLineMgr::Get_Instance()->Collision_Line(m_tInfo.fX, &fY, m_tInfo.fY);
+		if (m_bJump)
+		{
+			// 포물선 계산에 따라 y 위치 변경
+			m_tInfo.fY -= (m_fJumpPower * sinf(45.f) * m_fTime) - (9.8f * m_fTime * m_fTime) * 0.5f;
+			m_fTime += 0.2f;
 
-	//	if (bLineCol && (fY < m_tInfo.fY))
-	//	{
-	//		// 충돌 시 점프 종료
-	//		m_bJump = false;
-	//		m_fTime = 0.f;
-	//		m_tInfo.fY = fY;
-	//	}
-	//}
-	//else if (bLineCol)
-	//{
-	//	// 지면 충돌 시 위치 설정
-	//	m_tInfo.fY = fY;
-	//}
-	//else
-	//{
-	//	// 공중에서 중력 적용
-	//	m_tInfo.fY += 9.8f * m_fTime * m_fTime * 0.5f;
-	//	m_fTime += 0.2f;
-	//}
+			if (bLineCol && (fY < m_tInfo.fY))
+			{
+				// 충돌 시 점프 종료
+				m_bJump = false;
+				m_fTime = 0.f;
+				m_tInfo.fY = fY;
+			}
+		}
+		else if (bLineCol)
+		{
+			// 지면 충돌 시 위치 설정
+			m_tInfo.fY = fY;
+		}
+		else
+		{
+			// 공중에서 중력 적용
+			m_tInfo.fY += 9.8f * m_fTime * m_fTime * 0.5f;
+			m_fTime += 0.2f;
+		}
+	}
 }
 
-//
+
 
 
 
