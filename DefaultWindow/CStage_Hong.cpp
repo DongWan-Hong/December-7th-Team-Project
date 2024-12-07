@@ -7,6 +7,7 @@
 #include "CKeyMgr.h"
 #include "CBmpMgr.h"
 #include "BlockMgr.h"
+#include "CWall.h"
 
 CStage_Hong::CStage_Hong()
 {
@@ -23,6 +24,7 @@ void CStage_Hong::Initialize()
 	
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Back.bmp", L"Back");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Ground.bmp", L"Ground");
+	
 }
 
 void CStage_Hong::Update()

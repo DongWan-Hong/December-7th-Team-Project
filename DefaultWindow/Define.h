@@ -24,18 +24,29 @@
 #define SQUARE(X)            (X)*(X)
 #define RADIAN(Degree)        (Degree)*PI/180.f
 #define DEGREE(Radian)        (Radian)*180.f/PI
+// 은성코드
 
 extern HWND		g_hWnd;
 //extern int g_CurrentStage; // 현재 스테이지 어떤 스테이지인지 
 
 enum DIRECTION { DIR_LEFT, DIR_RIGHT, DIR_UP, DIR_DOWN, DIR_LU, DIR_RU, DIR_END };
 
-enum DRAWPOINT { HEAD, TAIL, DRAWPOINT_END };
+enum DRAWPOINT { HEAD, TAIL, DRAWPOINT_END }; // 채영 코드
 enum DRAWDIR { NO_DIR, HORIZONTAL, VERTICAL, DRAWDIR_END };
 
-enum OBJID { OBJ_PLAYER, OBJ_BULLET,OBJ_BLOCK,OBJ_MONSTER,OBJ_BOSS,OBJ_BOSSBULLET ,OBJ_MOUSE, OBJ_BUTTON, OBJ_END };
+enum OBJID 
+{ 
+	OBJ_PLAYER, 
+	OBJ_BULLET,OBJ_BLOCK,
+	OBJ_MONSTER,
+	OBJ_BOSS,
+	OBJ_BOSSBULLET ,
+	OBJ_MOUSE, 
+	OBJ_WALL,// 무결이 코드에 의해 추가
+	OBJ_END 
+};
 
-enum class GROUP_TYPE
+enum class GROUP_TYPE 
 {
 	OBJ_PLAYER,
 	OBJ_PLYAER_MISSILE,
@@ -91,6 +102,17 @@ typedef struct tagLine
 		: tLPoint(_tLPoint), tRPoint(_tRPoint) {	}
 
 }LINE;
+ 
+typedef struct tagBoxPoint // 무결이 코드
+{
+	float		fX, fY;
+
+	tagBoxPoint() { ZeroMemory(this, sizeof(tagLinePoint)); }
+	tagBoxPoint(float _fX, float _fY)
+		: fX(_fX), fY(_fY)
+	{	}
+
+}BOXPOINT;
 
 
 template<typename T>

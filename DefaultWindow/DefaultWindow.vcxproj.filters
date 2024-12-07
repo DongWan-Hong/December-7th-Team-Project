@@ -109,6 +109,9 @@
     <Filter Include="03. Design\SceneMgr">
       <UniqueIdentifier>{c7a7d4da-d389-4c11-b435-e353aabbcbd0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="01. Obj\07. Wall">
+      <UniqueIdentifier>{edf2431b-74cd-429d-a6fe-d0e5d645a6a2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -216,6 +219,9 @@
     <ClInclude Include="CStage_Silver.h">
       <Filter>02_Stage\02_Stage_Silver</Filter>
     </ClInclude>
+    <ClInclude Include="CWall.h">
+      <Filter>01. Obj\07. Wall</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DefaultWindow.cpp">
@@ -307,6 +313,9 @@
     </ClCompile>
     <ClCompile Include="CStage_Silver.cpp">
       <Filter>02_Stage\02_Stage_Silver</Filter>
+    </ClCompile>
+    <ClCompile Include="CWall.cpp">
+      <Filter>01. Obj\07. Wall</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

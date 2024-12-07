@@ -9,6 +9,7 @@
 #include "BlockMgr.h"
 #include "CBmpMgr.h"
 #include "CSceneMgr.h"
+#include "CWall.h"
 //
 
 CMainGame::CMainGame()
@@ -29,6 +30,7 @@ void CMainGame::Initialize()
 
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Back.bmp", L"Back");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Ground.bmp", L"Ground");
+	
 }
 
 void CMainGame::Update()

@@ -15,34 +15,45 @@ CLineMgr::~CLineMgr()
 	Release();
 }
 
-bool CLineMgr::Collision_Line(float _fX, float* pY)
+bool CLineMgr::Collision_Line(float _fX, float* pY, float _fY)
 {
-	if(m_Linelist.empty())
-		return false;
+    if (m_Linelist.empty())
+        return false;
 
+    CLine* pTargetLine = nullptr;
+    float minYDistance = FLT_MAX;
 
-	CLine* pTargetLine = nullptr;
+    for (auto& pLine : m_Linelist)
+    {
+        if (_fX >= pLine->Get_Info().tLPoint.fX &&
+            _fX < pLine->Get_Info().tRPoint.fX)
+        {
+            // 현재 선의 좌표 계산
+            float x1 = pLine->Get_Info().tLPoint.fX;
+            float y1 = pLine->Get_Info().tLPoint.fY;
+            float x2 = pLine->Get_Info().tRPoint.fX;
+            float y2 = pLine->Get_Info().tRPoint.fY;
 
-	for (auto& pLine : m_Linelist)
-	{
-		if (_fX >= pLine->Get_Info().tLPoint.fX &&
-			_fX < pLine->Get_Info().tRPoint.fX)
-		{
-			pTargetLine = pLine;
-		}
-	}
+            // 해당 X에서의 Y 좌표 계산
+            float calculatedY = ((y2 - y1) / (x2 - x1)) * (_fX - x1) + y1;
 
-	if (!pTargetLine)
-		return false;
+            // Y 좌표와의 거리 계산
+            float yDistance = fabs(calculatedY - _fY);
 
-	float	x1 = pTargetLine->Get_Info().tLPoint.fX;
-	float	y1 = pTargetLine->Get_Info().tLPoint.fY;
-	float	x2 = pTargetLine->Get_Info().tRPoint.fX;
-	float	y2 = pTargetLine->Get_Info().tRPoint.fY;
+            // Y 거리가 최소인 선 선택
+            if (yDistance < minYDistance)
+            {
+                minYDistance = yDistance;
+                pTargetLine = pLine;
+                *pY = calculatedY; // 계산된 Y 좌표 저장
+            }
+        }
+    }
 
-	*pY = ((y2 - y1) / (x2 - x1)) * (_fX - x1) + y1;
+    if (!pTargetLine)
+        return false;
 
-	return true;
+    return true;
 }
 
 void CLineMgr::Initialize()

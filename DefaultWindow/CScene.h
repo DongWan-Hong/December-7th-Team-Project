@@ -3,8 +3,7 @@
 #include "Define.h"
 #include "CPlayer.h"
 #include "CMonster.h"
-//지금 아직 씬매니저 메인함수에서 연결 안하긴했어
-//class CObj; // 객체 생성 안할꺼니까 전방선언
+
 
 class CScene
 {

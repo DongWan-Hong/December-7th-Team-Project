@@ -7,6 +7,7 @@
 #include "CKeyMgr.h"
 #include "CBmpMgr.h"
 #include "BlockMgr.h"
+#include "CWall.h"
 
 CStage_Hero::CStage_Hero()
 {
@@ -24,6 +25,10 @@ void CStage_Hero::Initialize()
 
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Back.bmp", L"Back");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Ground.bmp", L"Ground");
+	for (int i = 0; i < 4; ++i)
+	{
+		CObjMgr::Get_Instance()->Add_Object(OBJ_WALL, CAbstractFactory<CWall>::Create(float(50), float(i * 100), 0.f));
+	}
 }
 
 void CStage_Hero::Update()

@@ -163,6 +163,7 @@
     <ClInclude Include="CStage_Hong.h" />
     <ClInclude Include="CStage_Moo.h" />
     <ClInclude Include="CStage_Silver.h" />
+    <ClInclude Include="CWall.h" />
     <ClInclude Include="DefaultWindow.h" />
     <ClInclude Include="Define.h" />
     <ClInclude Include="DummyMgr.h" />
@@ -199,6 +200,7 @@
     <ClCompile Include="CStage_Hong.cpp" />
     <ClCompile Include="CStage_Moo.cpp" />
     <ClCompile Include="CStage_Silver.cpp" />
+    <ClCompile Include="CWall.cpp" />
     <ClCompile Include="DefaultWindow.cpp" />
     <ClCompile Include="DummyMgr.cpp" />
     <ClCompile Include="pch.cpp">

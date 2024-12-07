@@ -9,7 +9,8 @@ private:
 	~CLineMgr();
 
 public:
-	bool	Collision_Line(float _fX, float* pY);
+	bool	Collision_Line(float _fX, float* pY);// 기존코드
+	bool	Collision_Line(float _fX, float* pY, float _fY); // 무결코드
 
 public:
 	void	Initialize();
