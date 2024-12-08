@@ -70,18 +70,20 @@ void CBullet::Render(HDC hDC)
 	//	0,
 	//	SRCCOPY);					// 출력 효과 설정(그대로 출력)
 
-	GdiTransparentBlt(hDC,            // 복사 받을 DC
-		m_tRect.left + iScrollX,    // 복사 받을 위치 좌표 X, Y    
-		m_tRect.top + iScrollY,
-		32,            // 복사 받을 이미지의 가로, 세로    라이트 - 레프트 해서 길이를 넣어줘야하니까
-		31,                                                
-		hMemDC,                        // 복사할 이미지 DC    
-		473,                            // 비트맵 출력 시작 좌표(Left, top)
-		616,
-		32,            // 복사할 이미지의 가로, 세로
-		31,
-		RGB(128, 0, 128));            // 제거할 색상
+	GdiTransparentBlt(
+		hDC,                        // 복사 받을 DC (화면에 출력할 DC)
+		m_tRect.left + iScrollX,    // 복사받을 위치의 X좌표 (현재 스크롤 값을 고려하여 계산)
+		m_tRect.top + iScrollY,     // 복사받을 위치의 Y좌표 (현재 스크롤 값을 고려하여 계산)
+		32,                         // 복사받을 이미지의 가로 길이 (출력할 이미지 크기 지정)
+		31,                         // 복사받을 이미지의 세로 길이
+		hMemDC,                     // 복사할 이미지가 저장된 메모리 DC
+		473,                        // 원본 비트맵에서 복사를 시작할 X좌표
+		616,                        // 원본 비트맵에서 복사를 시작할 Y좌표
+		32,                         // 원본 비트맵에서 복사할 영역의 가로 길이
+		31,                         // 원본 비트맵에서 복사할 영역의 세로 길이
+		RGB(128, 0, 128));       // 투명 처리할 색상 (이미지의 이 색상이 투명 처리됨)
 }
+
 
 void CBullet::Release()
 {
@@ -123,4 +125,3 @@ void CBullet::Skill_F2_Bullet()
 
 }
 
-//혹시 강의 한번만...

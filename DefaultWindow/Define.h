@@ -29,7 +29,7 @@
 extern HWND		g_hWnd;
 //extern int g_CurrentStage; // 현재 스테이지 어떤 스테이지인지 
 
-enum BULLET_ID{ BUL_NORMAL, BUL_END }; // 총알 타입  // 은성 코드
+enum BULLET_ID{ BUL_NORMAL, BUL_ELEC,BUL_END }; // 총알 타입  // 은성 코드
 enum DIRECTION { DIR_NONE,DIR_LEFT, DIR_RIGHT, DIR_UP, DIR_DOWN, DIR_LU, DIR_RU, DIR_END };
 
 enum DRAWPOINT { HEAD, TAIL, DRAWPOINT_END }; // 채영 코드
@@ -214,3 +214,16 @@ typedef struct tagAniInfo
 		tImgLT = _tImgLT; tPosLT = _tPosLT; tSize = _tSize; tTargetInfo = _tTargetInfo; _iDuration = _iDuration; iMaxFrame = _iMaxFrame;
 	}
 }ANINFO;
+
+
+typedef struct tagImage // 무결이코드 이미지 좌표 따는거(임시)
+{
+	int _iX;
+	int _iY;
+
+	bool operator==(tagImage rhs)
+	{
+		return (_iX == rhs._iX) && (_iY == rhs._iY);
+	}
+
+}IMAGE;

@@ -7,6 +7,7 @@
 #include "CAbstractFactory.h"
 #include "CSceneMgr.h"
 #include "BlockMgr.h"
+#include "CBmpMgr.h"
 
 CScene_Start::CScene_Start()
 {
@@ -18,7 +19,8 @@ CScene_Start::~CScene_Start()
 
 void CScene_Start::Initialize(CObj* _pPlayer)
 {
-	
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Ground.bmp", L"Ground");
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Rock_Man/Start_1.bmp", L"Start_1");
 }
 
 void CScene_Start::Update() // 스테이지
@@ -85,34 +87,37 @@ void CScene_Start::Update() // 스테이지
 
 void CScene_Start::Late_Update()
 {
+
+
 }
-
-void CScene_Start::Render(HDC _hDC) //신경 x
+	
+void CScene_Start::Render(HDC _hDC)
 {
-	Rectangle(_hDC, 0, 0, WINCX, WINCY);
-	HFONT newFont = CreateFont(50, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, ANSI_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, L"Arial");
-	HFONT oldFont = (HFONT)SelectObject(_hDC, newFont);
-	TCHAR szTitleText[32];
-	wsprintf(szTitleText, L"Game Start");
-	TextOut(_hDC, WINCX / 2 - 130, WINCY / 2 - 150, szTitleText, lstrlen(szTitleText));
-	SelectObject(_hDC, oldFont);
-	DeleteObject(newFont);
 
-	newFont = CreateFont(25, 0, 0, 0, FW_NORMAL, FALSE, FALSE, FALSE, ANSI_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, L"Arial");
-	oldFont = (HFONT)SelectObject(_hDC, newFont);
-	TCHAR szStartText[32];
-	wsprintf(szStartText, L"Space: Game Start");
-	TextOut(_hDC, WINCX / 2 - 120, WINCY / 2 + 170, szStartText, lstrlen(szStartText));
-	SelectObject(_hDC, oldFont);
-	DeleteObject(newFont);
+	HDC		hBckDC = CBmpMgr::Get_Instance()->Find_Image(L"Back");
+	HDC		hStartDC = CBmpMgr::Get_Instance()->Find_Image(L"Start_1");
+
+	BitBlt(hStartDC, 0, 0, WINCX, WINCY, hBckDC, 0, 0, SRCCOPY);
+
+	BitBlt(_hDC,
+		0, 0, WINCX, WINCY,
+		hStartDC,
+		0,
+		0,
+		SRCCOPY);
 }
 
 void CScene_Start::Release()
 {
 }
 
-
-void CScene_Start::Exit()
+void CScene_Start::Initialize()
 {
-	
 }
+
+void CScene_Start::LateUpdate()
+{
+}
+
+
+

@@ -6,9 +6,9 @@
 #include "CLineMgr.h"
 #include "CKeyMgr.h"
 #include "CScrollMgr.h"
-
+#include "CBullet_Normal.h"
 CPlayer::CPlayer()
-	: m_bJump(false), m_fJumpPower(0.f), m_fTime(0.f)
+	: m_bJump(false), m_fJumpPower(0.f), m_fTime(0.f), m_bIsDrop(true)
 
 {
 	ZeroMemory(&m_tPosin, sizeof(POINT));
@@ -82,7 +82,7 @@ void CPlayer::Late_Update()
 	if (m_bDamaged)
 		return;
 
-	m_CollisionRect = { m_tRect.left, m_tRect.bottom, m_tRect.right, m_tRect.bottom + 5 };
+	m_CollisionRect = { m_tRect.left, m_tRect.bottom, m_tRect.right, m_tRect.bottom + 50 };
 	Offset();// 화면 스크롤 처리
 
 }
@@ -146,12 +146,11 @@ void CPlayer::Create_Bullet()
 	switch (m_eBullet_ID) // 뷸릿 타입 확인 // 나중에 선택하게 하기
 	{
 	case BUL_NORMAL:
-		CObjMgr::Get_Instance()->Add_Object(OBJ_BULLET, CAbstractFactory<CBullet>::Create(m_tInfo.fX, m_tInfo.fY, m_eDir));
+		CObjMgr::Get_Instance()->Add_Object(OBJ_BULLET, CAbstractFactory<CBullet_Normal>::Create(m_tInfo.fX, m_tInfo.fY, m_eDir));
 		break;
 	default:
 		break;
 	}
-
 }
 
 void CPlayer::Set_Damaged(const DIRECTION& _eDir)
@@ -305,6 +304,12 @@ void CPlayer::CustomJumping()
 	{
 		m_bisGround = false;// 점프 중에는 지면에서 떨어짐
 		float temp = (m_fJumpPower * m_fTime) - (9.8f * m_fTime * m_fTime) * 0.5f;
+
+		if (temp < 0)
+			m_bIsDrop = true;
+		else
+			m_bIsDrop = false;
+
 		m_tInfo.fY -= temp;
 		m_fTime += 0.1f; // 무결코드는 파워 0.2에서 0.1f 로 수정됨
 
@@ -320,9 +325,9 @@ void CPlayer::CustomJumping()
 		else
 		{
 			m_fTime = 0; // 지면 도달 시 초기화
+			m_bIsDrop = false;
 		}
 	}
 }
-
 
 

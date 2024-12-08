@@ -79,7 +79,3 @@ void CStage_Chae::Render(HDC _hDC)
 		SRCCOPY);
 }
 
-void CStage_Chae::Exit()
-{
-}
-

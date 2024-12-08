@@ -4,18 +4,18 @@
 
 enum Check_Bullet { Default, Skill_1, Skill_2 };
 
-class CBullet : public CObj
+class CBullet abstract : public CObj
 {
 public:
 	CBullet();
 	virtual ~CBullet();
 
 public:	
-	virtual void Initialize()	 override;
-	virtual int Update()		 override;
-	virtual void Late_Update() override;
-	virtual void Render(HDC hDC) override;
-	virtual void Release()		 override;
+	virtual void Initialize()PURE;
+	virtual int Update()PURE;
+	virtual void Late_Update()PURE;
+	virtual void Render(HDC hDC)PURE;
+	virtual void Release()PURE;
 
 	void Default_Bullet();
 	void Skill_F1_Bullet();

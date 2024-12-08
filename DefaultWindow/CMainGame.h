@@ -25,6 +25,11 @@ private:
 	int			m_iFPS;
 	TCHAR		m_szFPS[16];
 
+
+	bool m_bShow_Start2;
+	ULONGLONG ullStart_Change_Time;
+
+
 };
 
 // 디자인 패턴 : 코드의 구조들을 일정한 형태로 만들어 재사용하기 편리하게 만든 패턴

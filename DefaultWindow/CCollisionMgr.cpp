@@ -189,8 +189,8 @@ void CCollisionMgr::Collision_Boss_Box(CObj* _Boss, list<CObj*> _Src)
 		{
 			Y = (rc.top) - _Boss->Get_Info().fCY * 0.5;
 			_Boss->Set_Pos(_Boss->Get_Info().fX, Y);
-			dynamic_cast<CBoss_FireMan*>(_Boss)->Set_Boss_Ground(true);
-			dynamic_cast<CBoss_FireMan*>(_Boss)->Set_Boss_Jump(true);
+		/*	dynamic_cast<CBoss_FireMan*>(_Boss)->Set_Boss_Ground(true);
+			dynamic_cast<CBoss_FireMan*>(_Boss)->Set_Boss_Jump(true);*/
 			_Boss->Update_Rect();
 		}
 
@@ -233,17 +233,14 @@ void CCollisionMgr::Collision_Player_Monster(CObj* _pPlayer, list<CObj*> _Monste
 	}
 }
 
-bool CCollisionMgr::Collision_RangeChack(CObj* _pPlayer, CObj* _pMonster, float _fRange)
+
+float CCollisionMgr::Collision_RangeChack(CObj* _pPlayer, CObj* _pMonster)
 {
 	float fWidth = fabsf(_pMonster->Get_Info().fX - _pPlayer->Get_Info().fX);
 	float fHeight = fabsf(_pMonster->Get_Info().fY - _pPlayer->Get_Info().fY);
 
 	float fDistance = sqrtf(fWidth * fWidth + fHeight * fHeight);
 
-	if (fDistance <= _fRange)
-		return true;
-	else
-	{
-		return false;
-	}
+	return fDistance;
+
 }

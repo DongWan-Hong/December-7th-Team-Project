@@ -78,9 +78,3 @@ void CStage_Moo::Release()
 	}
 }
 
-
-
-void CStage_Moo::Exit()
-{
-}
-

@@ -20,7 +20,6 @@ public:
 
 	virtual void Render(HDC _hDC)override;
 
-	virtual void Exit()override;// 해당 씬에서 나갈때 호출
 
 private:
 

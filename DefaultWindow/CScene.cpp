@@ -9,63 +9,12 @@
 
 CScene::CScene()
 {
+	ZeroMemory(&m_arrObj, sizeof(m_arrObj));
 }
 
-CScene::~CScene() // 
+CScene::~CScene() 
 {
-	Release();
-}
-
-void CScene::Initialize()
-{
-	CObjMgr::Get_Instance()->Add_Object(OBJ_PLAYER, CAbstractFactory<CPlayer>::Create());
-
-	CLineMgr::Get_Instance()->Initialize();
 	
-}
-
-void CScene::Update()
-{
-
-	if (CScrollMgr::Get_Instance()->Update())
-		return;
-
-
-	CObjMgr::Get_Instance()->Update();
-
-
-
-}
-
-void CScene::LateUpdate()
-{
-	if (0 != CScrollMgr::Get_Instance()->Get_Dir())
-		return;
-
-	CObjMgr::Get_Instance()->Late_Update();
-	CKeyMgr::Get_Instance()->Update();
-
-}
-
-void CScene::Render(HDC _hDC)
-{
-	Rectangle(_hDC, 0, 0, WINCX, WINCY);
-
-	CLineMgr::Get_Instance()->Render(_hDC);
-	CObjMgr::Get_Instance()->Render(_hDC);
-
-}
-
-void CScene::Release()
-{
-	for (UINT i = 0; i < (UINT)GROUP_TYPE::OBJ_END; ++i)
-	{
-		for (size_t j = 0; j < m_arrObj[i].size(); ++i)
-		{
-			delete m_arrObj[i][j];
-		}
-
-	}
 }
 
 

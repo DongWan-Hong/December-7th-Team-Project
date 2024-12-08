@@ -81,6 +81,3 @@ void CStage_Silver::Render(HDC _hDC)
 		SRCCOPY);
 }
 
-void CStage_Silver::Exit()
-{
-}

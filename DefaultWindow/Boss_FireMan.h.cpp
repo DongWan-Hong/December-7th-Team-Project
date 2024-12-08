@@ -4,6 +4,7 @@
 #include "CScrollMgr.h"
 #include "CLineMgr.h"
 #include "BlockMgr.h"
+#include "CBmpMgr.h"
 
 CBoss_FireMan::CBoss_FireMan()
 {
@@ -31,6 +32,8 @@ CBoss_FireMan::~CBoss_FireMan()
 
 void CBoss_FireMan::Initialize()
 {
+	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Rock_Man/boss_fire_all.bmp",L"Fire_Man");
+
 	m_tInfo = { 300, 400, 42.f, 48.f };
 	HP_INFO = { 200,200,200.f,200.f };
 	m_fSpeed = 3.f;
@@ -84,35 +87,37 @@ void CBoss_FireMan::Render(HDC hDC)
 	int iScrollX = (int)CScrollMgr::Get_Instance()->Get_ScrollX();
 	int iScrollY = (int)CScrollMgr::Get_Instance()->Get_ScrollY();
 
-	// 보스 본체 사각형 렌더링
-	Rectangle(hDC,
-		m_tRect.left + iScrollX,
-		m_tRect.top + iScrollY,
-		m_tRect.right + iScrollX,
-		m_tRect.bottom + iScrollY);
+	HDC hMeDC = CBmpMgr::Get_Instance()->Find_Image(L"Fire_Man");
 
-	// 보스 이름 출력
-	TCHAR box[32] = L"";
-	swprintf_s(box, L"보스");
-	TextOut(hDC, m_tInfo.fX + iScrollX - 17, m_tInfo.fY + iScrollY - 10, box, lstrlen(box));
+	// 보스 이미지 렌더링
+	GdiTransparentBlt(
+    hDC,
+    m_tRect.left + iScrollX,              // X 좌표
+    m_tRect.top + iScrollY - 29,          // Y 좌표를 수정 (보스가 바닥에 맞게 렌더링되도록 오프셋 추가)
+    68,                                   // 이미지 가로 크기
+    77,                                   // 이미지 세로 크기
+    hMeDC,
+    51,
+    15,
+    68,
+    77,
+    RGB(128, 0, 128));
 
-	// 체력 바 출력 (m_fSpeed 조건 확인)
-	if (m_fSpeed == 0)
-	{
-		// 전체 체력 바 , 레프트,탑,라이트,바텀
-		Rectangle(hDC, 90, 80, 110, 200);  // 일단 최대채력 580
 
-		// 체력 바 색상 설정
-		HBRUSH MyBrush = CreateSolidBrush(RGB(255, 0, 0));
-		HBRUSH OldBrush = (HBRUSH)SelectObject(hDC, MyBrush);
 
-		// 현재 체력에 따른 바 길이 계산
-		Rectangle(hDC, 90, 80, 110 , (200 - Hp_Count));
+	// 체력 바 그리기
+	Rectangle(hDC, 90, 80, 110, 200); // 전체 체력 바 (최대 체력)
 
-		// 브러시 해제
-		SelectObject(hDC, OldBrush);
-		DeleteObject(MyBrush);
-	}
+	// 체력 바 색상 설정
+	HBRUSH MyBrush = CreateSolidBrush(RGB(255, 0, 0));
+	HBRUSH OldBrush = (HBRUSH)SelectObject(hDC, MyBrush);
+
+	// 현재 체력에 따른 체력 바 길이 계산&
+	Rectangle(hDC, 90, 80, 110, (200 - Hp_Count));
+
+	// 브러시 해제
+	SelectObject(hDC, OldBrush);
+	DeleteObject(MyBrush);
 }
 
 

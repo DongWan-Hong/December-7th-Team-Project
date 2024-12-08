@@ -79,6 +79,3 @@ void CStage_Hero::Render(HDC _hDC)
 		SRCCOPY);
 }
 
-void CStage_Hero::Exit()
-{
-}

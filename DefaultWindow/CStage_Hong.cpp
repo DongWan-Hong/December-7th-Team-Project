@@ -24,6 +24,7 @@ void CStage_Hong::Initialize()
 {
 	//CLineMgr::Get_Instance()->Initialize();
 	//CBlockMgr::Get_Instance()->Initialize();
+
 	CObjMgr::Get_Instance()->Add_Object(OBJ_BOSS, CAbstractFactory<CBoss_FireMan>::Create());
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Back.bmp", L"Back");
 	CBmpMgr::Get_Instance()->Insert_Bmp(L"../Image/Ground.bmp", L"Ground");
@@ -76,16 +77,7 @@ void CStage_Hong::Render(HDC _hDC)
 
 	CObjMgr::Get_Instance()->Render(hMemDC);
 
-	BitBlt(_hDC,
-		0, 0, WINCX, WINCY,
-		hMemDC,
-		0,
-		0,
-		SRCCOPY);
 
 
-}
 
-void CStage_Hong::Exit()
-{
 }

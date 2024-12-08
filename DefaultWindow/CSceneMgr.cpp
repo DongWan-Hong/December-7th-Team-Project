@@ -43,14 +43,14 @@ CSceneMgr::~CSceneMgr()
 
 void CSceneMgr::Initialize() // Scene 생성
 {
-	m_arrScene[(UINT)SCENE_TYPE::STAGE_START] = new CScene_Start; // 스테이지 고르는 sCENE
-
+	m_arrScene[(UINT)SCENE_TYPE::STAGE_START] = new CScene_Start; // 스테이지 고르는 스타트 스테이즈
+	///////////////////////////////////////////////////////////////////////////////////
 	m_arrScene[(UINT)SCENE_TYPE::STAGE_Chae] = new CStage_Chae;     // 채영 스테이지
 	m_arrScene[(UINT)SCENE_TYPE::STAGE_Hero] = new CStage_Hero;     // 영웅 스테이지
 	m_arrScene[(UINT)SCENE_TYPE::STAGE_Hong] = new CStage_Hong;     // 홍동완 스테이지
 	m_arrScene[(UINT)SCENE_TYPE::STAGE_Silver] = new CStage_Silver; // 은성 스테이지
 	m_arrScene[(UINT)SCENE_TYPE::STAGE_Moo] = new CStage_Moo;       // 무결 스테이지
-
+	//////////////////////////////////////////////////////////////////////////////
 	
 	Set_Scene(SCENE_TYPE::STAGE_START);// 첫 Scene은 무조건 게임화면 띄우기
 	//필요에 따라서 Tool 스테이지 만들예정

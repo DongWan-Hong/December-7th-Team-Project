@@ -11,7 +11,7 @@ public :
 	virtual~CScene_Start();
 public :
 
-	virtual void Initialize(CObj* _pPlayer) ;
+	virtual void Initialize(CObj* _pPlayer);
 	virtual void Update() ;
 	virtual void Late_Update();
 	virtual void Render(HDC _hDC);
@@ -19,9 +19,10 @@ public :
 
 
 
-
 	// CScene을(를) 통해 상속됨
-	void Exit() override;
+	void Initialize() override;
+
+	void LateUpdate() override;
 
 };
 
